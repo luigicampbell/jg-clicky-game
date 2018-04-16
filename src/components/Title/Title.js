@@ -1,5 +1,5 @@
 import React from "react";
-import "./title.css";
+import "./Title.css";
 
 const Title = props => (
     <div className="titlebox">

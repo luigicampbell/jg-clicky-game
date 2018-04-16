@@ -1,10 +1,10 @@
 import React from "react";
-import "./navpills.css";
+import "./Navpills.css";
 
 const Navpills = props => (
     <div>
         <ul className="nav nav-pills nav-justified">
-            <li><a href="/">Jeff Goldblum Clicky Game</a></li>
+            <li><a href="https://luigicampbell.github.io/jg-clicky-game/">Jeff Goldblum Clicky Game</a></li>
             <li
                 className={props.message.indexOf('incorrectly') !== -1 ?
                     "desc-incorrect" :
@@ -14,7 +14,7 @@ const Navpills = props => (
             >
                 {props.message}
             </li>
-            <li>Score: <span style={{color: "#ff8a80"}}>{props.curScore}</span> | Top Score: {props.topScore}</li>
+            <li>Score: <span style={{color: "#ff8a80"}}>{props.sore}</span> | Top Score: {props.topScore}</li>
         </ul>
     </div>
 );

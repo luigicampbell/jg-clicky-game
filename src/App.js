@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import jg from './jg.json'
-import Wrapper from './components/wrapper'
-import Navpills from './components/navpills'
-import Title from './components/title'
+import Wrapper from './components/Wrapper'
+import Navpills from './components/Navpills'
+import Title from './components/Title'
 import JGCard from './components/JGCard'
 
 class App extends Component {
@@ -57,13 +57,13 @@ class App extends Component {
 
     render() {
         return (
-            <wrapper>
-                <navpills
+            <Wrapper>
+                <Navpills
                     message={this.state.message}
                     score={this.state.score}
                     topScore={this.state.topScore}
                 />
-                <title />
+                <Title />
                 {
                     this.state.jg.map(jg => (
                         <JGCard
@@ -74,7 +74,7 @@ class App extends Component {
                         />
                     ))
                 }
-            </wrapper>
+            </Wrapper>
         );
     }
 }
