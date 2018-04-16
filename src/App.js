@@ -7,32 +7,76 @@ import Title from './components/title'
 import JGCard from './components/JGCard'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-      <div>
-        <nav class="navbar">
-          <ul>
-            <li><a href="/">Clicky Game</a></li>
-            <li>Click an image to begin!</li>
-            <li>
-              "Score: "
-              "0"
-              " | Top Score: "
-              "0"
-            </li>
-          </ul>
-        </nav>
-        <header class="header">
-          <h1>Clicky Game</h1>
-          // Used React dev tools to check the element types
-          <h2>Click on an image to earn points, but don't click on any more than once!</h2>
-        </header>
-      </div>
+    state = {
+        message: "Ready, click a picture!",
+        topScore: 0,
+        score: 0,
+        jg: jg,
+        remainingJGs: jg
+    }
 
-      </div>
-    );
-  }
+    componentDidMount() {
+    }
+
+    shuffleJG = array => {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    chooseJG = pose => {
+        const findJG = this.state.remainingJGs.find(item => item.pose === pose);
+
+        if(findJG === undefined) {
+
+            // User chooses same jg
+            this.setState({
+                message: "Oh darn, here we go again!",
+                topScore: (this.state.score > this.state.topScore) ? this.state.score : this.state.topScore,
+                score: 0,
+                jg: jg,
+                remainingJGs: jg
+            });
+        }
+        else {
+
+            // User chooses unique jg
+            const newJG = this.state.remainingJGs.filter(item => item.pose !== pose);
+
+            this.setState({
+                message: "Nice! Keep going~",
+                score: this.state.score + 1,
+                jg: jg,
+                remainingJGs: newJG
+            });
+        }
+        // Shuffle board
+        this.shuffleJG(jg);
+    };
+
+    render() {
+        return (
+            <wrapper>
+                <navpills
+                    message={this.state.message}
+                    score={this.state.score}
+                    topScore={this.state.topScore}
+                />
+                <title />
+                {
+                    this.state.jg.map(jg => (
+                        <JGCard
+                            pose={jg.pose}
+                            image={jg.image}
+                            chooseJG={this.chooseJG}
+                            score={this.state.score}
+                        />
+                    ))
+                }
+            </wrapper>
+        );
+    }
 }
 
 export default App;
