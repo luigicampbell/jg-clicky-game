@@ -1,5 +1,5 @@
 import React from "react";
-import "./Navpills.css";
+import "./navpills.css";
 
 const Navpills = props => (
     <div>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import jg from './jg.json'
-import Wrapper from './components/Wrapper'
-import Navpills from './components/Navpills'
-import Title from './components/Title'
+import Wrapper from './components/wrapper'
+import Navpills from './components/navpills'
+import Title from './components/title'
 import JGCard from './components/JGCard'
 
 class App extends Component {
